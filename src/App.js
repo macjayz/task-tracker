@@ -26,12 +26,17 @@ const App = () => {
       reminder: true
     }
   ]);
+  const deleteTask = (id) => {
+      setTasks(tasks.filter((task)=>task.id !== id))
+  }
 
   return (
     <div className="container">
       <Navbar />
-      <Tasks tasks={tasks} />
-      
+      {tasks.length > 0 ? (
+      <Tasks tasks={tasks} onDelete = {deleteTask} />
+      ) : ('No Task to Display'
+      )}
     </div>
   );
 };
