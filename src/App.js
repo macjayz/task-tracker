@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Navbar from "./components/layout/Navbar";
 import Tasks from "./components/Tasks";
+import AddTask from "./components/AddTask";
 // import Message from './components/Message';
 // import FunctionClick from './components/FunctionClick';
 
@@ -26,15 +27,21 @@ const App = () => {
       reminder: true
     }
   ]);
+  //delete tasks
   const deleteTask = (id) => {
       setTasks(tasks.filter((task)=>task.id !== id))
   }
 
+  //toggle tasks 
+  const toggleReminder = (id) => {
+    setTasks(tasks.map((task)=> task.id === id ? {...task, reminder: !task.reminder}: task))
+  }
   return (
     <div className="container">
       <Navbar />
+      <AddTask />
       {tasks.length > 0 ? (
-      <Tasks tasks={tasks} onDelete = {deleteTask} />
+      <Tasks tasks={tasks} onDelete = {deleteTask} onToggle = {toggleReminder}/>
       ) : ('No Task to Display'
       )}
     </div>
