@@ -4,15 +4,12 @@ import Button from '../Button'
 import Tasks from '../Tasks'
 //  import { Btn } from 'reactstrap';
 
-const Navbar = props =>{
-  const onClick = () => {
-   console.log('click')
-  }
- const {title} = props
+const Navbar = ({title,onAdd,showAdd}) =>{
+ 
   return (<div>
     <header className='header'>
       <h1>{title}</h1>
-      <Button color='green' text='Add' onClick={onClick}/>
+      <Button color={showAdd?'red':'green'} text={showAdd?'Close':'Add'} onClick={onAdd}/>
       <Tasks />
     </header>
     
